@@ -56,7 +56,7 @@ public class PlazaFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ReqPlaza> call, Throwable t) {
-
+                Toast.makeText(view.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -15,8 +15,9 @@ import static android.content.Intent.getIntentOld;
 
 public class ProfileFragment extends Fragment {
 
-    public View view;
-    public TextView profilenama;
+    View view;
+    TextView profilenama;
+    TextView balance;
     LinearLayout btnLogout;
     LinearLayout btnRedeem;
 
@@ -24,8 +25,14 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        String tempprofilenama = getActivity().getIntent().getStringExtra("profilenama");
         profilenama = (TextView)view.findViewById(R.id.profilenama);
-        profilenama.setText(getActivity().getIntent().getStringExtra("profilenama"));
+        profilenama.setText(tempprofilenama);
+
+        String tempbalance = getActivity().getIntent().getStringExtra("balance");
+        balance = (TextView)view.findViewById(R.id.balance);
+        balance.setText(tempbalance);
 
         btnLogout = (LinearLayout)view.findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {

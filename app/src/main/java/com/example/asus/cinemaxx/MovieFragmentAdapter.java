@@ -36,7 +36,7 @@ public class MovieFragmentAdapter extends RecyclerView.Adapter<MovieFragmentAdap
         final Movie movie = movies.get(holder.getAdapterPosition());
         Picasso.with(context)
                 .load("http://cinema-xxii-server.herokuapp.com/profile?id=" + movie.getName())
-                .resize(150, 150)
+                .resize(200, 200)
                 .centerCrop()
                 .into(holder.movieImg);
 
@@ -44,13 +44,7 @@ public class MovieFragmentAdapter extends RecyclerView.Adapter<MovieFragmentAdap
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MovieDetailActivity.class);
-                intent.putExtra("moviename", movie.getName());
-                intent.putExtra("moviecast", movie.getCastStar());
-                intent.putExtra("moviewriter", movie.getDirector());
-                intent.putExtra("moviegenre", movie.getGenreId());
-                intent.putExtra("movieproducer", movie.getProducer());
-                intent.putExtra("movielength", movie.getLength().toString());
-                intent.putExtra("moviesynopsis", movie.getDescription());
+                intent.putExtra("movieid", movie.getId());
                 view.getContext().startActivity(intent);
             }
         });

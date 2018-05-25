@@ -38,7 +38,7 @@ public class PlazaFragmentAdapter extends RecyclerView.Adapter<PlazaFragmentAdap
 
         Picasso.with(context)
                 .load("http://cinema-xxii-server.herokuapp.com/profile?id=" + plaza.getName())
-                .resize(100, 100)
+                .resize(150, 150)
                 .centerCrop()
                 .into(holder.plazaImg);
 
@@ -46,8 +46,7 @@ public class PlazaFragmentAdapter extends RecyclerView.Adapter<PlazaFragmentAdap
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MovieByPlaza.class);
-                intent.putExtra("plazanama", plaza.getName());
-                intent.putExtra("plazaalamat", plaza.getStreet());
+                intent.putExtra("plazaid", plaza.getId());
                 view.getContext().startActivity(intent);
             }
         });

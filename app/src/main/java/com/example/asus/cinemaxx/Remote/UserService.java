@@ -3,7 +3,9 @@ package com.example.asus.cinemaxx.Remote;
 import com.example.asus.cinemaxx.Model.Plaza;
 import com.example.asus.cinemaxx.Model.ReqLogin;
 import com.example.asus.cinemaxx.Model.ReqMovie;
+import com.example.asus.cinemaxx.Model.ReqMovieId;
 import com.example.asus.cinemaxx.Model.ReqPlaza;
+import com.example.asus.cinemaxx.Model.ReqPlazaId;
 import com.example.asus.cinemaxx.Model.ResObj;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserService {
 
@@ -29,5 +32,11 @@ public interface UserService {
 
     @GET("/movie")
     Call<ReqMovie> getMovieRequest();
+
+    @GET("/movie/{id}")
+    Call<ReqMovieId> getMovieById(@Path("id") Integer id);
+
+    @GET("plaza/{id}")
+    Call<ReqPlazaId> getPlazaById(@Path("id") Integer id);
 
 }

@@ -65,11 +65,6 @@
         android:text="LOG IN"
         android:textColor="#fff"
         android:id="@+id/btnLogin"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Forgot Your Password?"
-        android:gravity="right"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

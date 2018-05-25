@@ -32,7 +32,10 @@
             android:label="CINEMAXX"
             android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MovieByPlaza" />
+        <activity android:name=".MovieByPlaza"
+            android:label="CINEMAXX"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RedeemActivity"
             android:label="CINEMAXX"

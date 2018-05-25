@@ -1,15 +1,16 @@
 package com.example.asus.cinemaxx.Model;
 
 public class UserModel {
-    private int id;
+    private Integer id;
     private String name;
     private String email;
+    public Integer point;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -27,5 +28,13 @@ public class UserModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
     }
 }

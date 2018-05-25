@@ -3,9 +3,9 @@ package com.example.asus.cinemaxx.Model;
 public class Movie {
     private Integer id;
     private String name;
-    private String genreId;
+    private String genre_id;
     private String description;
-    private String castStar;
+    private String cast_star;
     private Integer length;
     private String releaseDate;
     private String director;
@@ -28,11 +28,11 @@ public class Movie {
     }
 
     public String getGenreId() {
-        return genreId;
+        return genre_id;
     }
 
     public void setGenreId(String genreId) {
-        this.genreId = genreId;
+        this.genre_id = genre_id;
     }
 
     public String getDescription() {
@@ -44,11 +44,11 @@ public class Movie {
     }
 
     public String getCastStar() {
-        return castStar;
+        return cast_star;
     }
 
     public void setCastStar(String castStar) {
-        this.castStar = castStar;
+        this.cast_star = castStar;
     }
 
     public Integer getLength() {

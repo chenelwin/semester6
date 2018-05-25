@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (resObj.isStatus()) {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         intent.putExtra("profilenama", resObj.getUser().getName());
+                        intent.putExtra("balance", resObj.getUser().getPoint().toString());
                         startActivity(intent);
                         finish();
                     } else {
@@ -109,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResObj> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
     }
