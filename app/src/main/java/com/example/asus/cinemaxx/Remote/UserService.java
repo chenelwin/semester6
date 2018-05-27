@@ -18,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UserService {
 
@@ -38,5 +39,9 @@ public interface UserService {
 
     @GET("plaza/{id}")
     Call<ReqPlazaId> getPlazaById(@Path("id") Integer id);
+
+    @GET("movie/{id}/schedule")
+    Call<ReqPlaza> getPlazaByMovie(@Path("id") Integer id,
+                                   @Query("date") String date);
 
 }

@@ -28,7 +28,6 @@ public class PlazaFragment extends Fragment {
 
     UserService userService = ApiUtils.getUserService();
     public View view;
-    //public static List<Plaza> plazaList;
     private RecyclerView rvPlazaFragment;
     private PlazaFragmentAdapter plazaFragmentAdapter;
 

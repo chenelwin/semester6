@@ -12,4 +12,5 @@ public class ReqPlaza {
     public void setPlazas(List<Plaza> plazas) {
         this.plazas = plazas;
     }
+
 }
