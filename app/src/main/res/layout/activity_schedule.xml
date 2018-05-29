@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PlazaByMovie">
+    tools:context=".ScheduleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,12 +122,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="#ff666666">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:text="Cinema"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:id="@+id/plazanama"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fffd7100">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Plaza"
+            android:text="Buy Ticket"
             android:textSize="22sp"
             android:padding="5dp"
             android:layout_marginLeft="10dp"
@@ -141,24 +174,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/dateText"
-                android:text="Select Date"
                 android:padding="5dp"
                 android:textSize="20sp"
                 android:textColor="#fff" />
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"
-                android:src="@drawable/imgformemail"
-                android:id="@+id/btnCalendar"/>
         </LinearLayout>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/RvPlazaByMovie"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:id="@+id/RvSchedule">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

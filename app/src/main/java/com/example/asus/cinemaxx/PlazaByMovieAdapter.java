@@ -16,6 +16,12 @@ import java.util.List;
 
 public class PlazaByMovieAdapter extends RecyclerView.Adapter<PlazaByMovieAdapter.ViewHolder> {
 
+    public interface PassingData{
+        void passData(Integer id);
+    }
+
+    public static PassingData passingData;
+
     List<Plaza> plazas;
     Context context;
 
@@ -40,6 +46,13 @@ public class PlazaByMovieAdapter extends RecyclerView.Adapter<PlazaByMovieAdapte
                 .resize(150, 150)
                 .centerCrop()
                 .into(holder.plazaImg);
+
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                passingData.passData(plaza.getId());
+            }
+        });
     }
 
     @Override

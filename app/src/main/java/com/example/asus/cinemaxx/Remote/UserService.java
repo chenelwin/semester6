@@ -44,4 +44,8 @@ public interface UserService {
     Call<ReqPlaza> getPlazaByMovie(@Path("id") Integer id,
                                    @Query("date") String date);
 
+    @GET("plaza/{id}/schedule")
+    Call<ReqMovie> getMovieByPlaza(@Path("id") Integer id,
+                                   @Query("date") String date);
+
 }

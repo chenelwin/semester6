@@ -30,26 +30,32 @@
         <activity
             android:name=".HomeActivity"
             android:label="CINEMAXX"
-            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MovieByPlaza"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".MovieByPlaza"
             android:label="CINEMAXX"
-            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".RedeemActivity"
             android:label="CINEMAXX"
-            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".MovieDetailActivity"
             android:label="CINEMAXX"
-            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PlazaByMovie"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".PlazaByMovie"
             android:label="CINEMAXX"
-            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".ScheduleActivity"
+            android:label="CINEMAXX"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.example.asus.cinemaxx.Model;
 
+import java.util.List;
+
 public class Movie {
     private Integer id;
     private String name;
@@ -10,6 +12,7 @@ public class Movie {
     private String releaseDate;
     private String director;
     private String producer;
+    private List<Schedule> schedules = null;
 
     public Integer getId() {
         return id;
@@ -81,5 +84,13 @@ public class Movie {
 
     public void setProducer(String producer) {
         this.producer = producer;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }

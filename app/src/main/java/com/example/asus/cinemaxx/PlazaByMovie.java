@@ -2,6 +2,7 @@ package com.example.asus.cinemaxx;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -30,10 +31,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, PlazaByMovieAdapter.PassingData{
 
     Context context;
     UserService userService = ApiUtils.getUserService();
+    String displaydate;
     ImageView btnCalendar;
     TextView moviename;
     TextView moviecast;
@@ -62,6 +64,8 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
 
         doGetMovieId();
 
+        PlazaByMovieAdapter.passingData = this;
+
         btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
         btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +75,15 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+    }
+
+    @Override
+    public void passData(Integer id){
+        Intent intent = new Intent(PlazaByMovie.this, ScheduleActivity.class);
+        intent.putExtra("movieid", movieid);
+        intent.putExtra("plazaid", id);
+        intent.putExtra("displaydate", displaydate);
+        startActivity(intent);
     }
 
     @Override
@@ -92,14 +105,14 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
         String formatyear = "" + year;
         TextView textView = (TextView)findViewById(R.id.dateText);
         //textView.setText(currentDateString);
-        String displaydate = formatday+" "+formatmonth+" "+formatyear;
+        displaydate = formatday+" "+formatmonth+" "+formatyear;
         textView.setText(displaydate);
         doGetPlazaByMovie(formatmonthint, formatday, formatyear);
     }
 
     private void doGetMovieId(){
-        Integer id = getIntent().getIntExtra("movieid", 0);
-        Call<ReqMovieId> call = userService.getMovieById(id);
+        movieid = getIntent().getIntExtra("movieid", 0);
+        Call<ReqMovieId> call = userService.getMovieById(movieid);
         call.enqueue(new Callback<ReqMovieId>() {
             @Override
             public void onResponse(Call<ReqMovieId> call, Response<ReqMovieId> response) {
