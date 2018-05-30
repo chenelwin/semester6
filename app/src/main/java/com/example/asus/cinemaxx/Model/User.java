@@ -1,6 +1,6 @@
 package com.example.asus.cinemaxx.Model;
 
-public class UserModel {
+public class User {
     private Integer id;
     private String name;
     private String email;

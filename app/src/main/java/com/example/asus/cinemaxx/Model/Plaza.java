@@ -1,5 +1,7 @@
 package com.example.asus.cinemaxx.Model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Plaza {
@@ -8,7 +10,7 @@ public class Plaza {
     private String city;
     private String street;
     private String phoneNumber;
-    private List<Schedule> schedules = null;
+    private ArrayList<Schedule> schedules;
 
     public Integer getId() {
         return id;
@@ -50,11 +52,11 @@ public class Plaza {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Schedule> getSchedules() {
+    public ArrayList<Schedule> getSchedules() {
         return schedules;
     }
 
-    public void setSchedules(List<Schedule> schedules) {
+    public void setSchedules(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
     }
 }

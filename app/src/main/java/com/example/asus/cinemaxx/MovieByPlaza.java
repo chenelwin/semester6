@@ -4,12 +4,14 @@ import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -20,13 +22,16 @@ import com.example.asus.cinemaxx.Model.Movie;
 import com.example.asus.cinemaxx.Model.Plaza;
 import com.example.asus.cinemaxx.Model.ReqMovie;
 import com.example.asus.cinemaxx.Model.ReqPlazaId;
+import com.example.asus.cinemaxx.Model.Schedule;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +49,7 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     TextView plazanama;
     TextView plazaalamat;
     ImageView plazaimg;
+    ArrayList<Schedule> schedules;
     Context context;
     ImageView btnCalendar;
     RecyclerView rvMovieByPlaza;
@@ -77,6 +83,10 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     @Override
     public void passData(Integer id){
         Intent intent = new Intent(MovieByPlaza.this, ScheduleActivity.class);
+        Bundle bundle = new Bundle();
+        //bundle.putSerializable("schedulelist", schedules);
+        //intent.putExtras(bundle);
+        intent.putParcelableArrayListExtra("schedulelist", schedules );
         intent.putExtra("movieid", id);
         intent.putExtra("plazaid", plazaid);
         intent.putExtra("displaydate", displaydate);
@@ -119,6 +129,7 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
                 plazanama.setText(plaza.getName());
                 plazanamaheader.setText(plaza.getName());
                 plazaalamat.setText(plaza.getStreet());
+                schedules = plaza.getSchedules();
                 Picasso.with(context)
                         .load("http://cinema-xxii-server.herokuapp.com/profile?id="+plaza.getName())
                         .resize(150, 150)

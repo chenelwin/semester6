@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.asus.cinemaxx.Model.User;
+
 import static android.content.Intent.getIntent;
 import static android.content.Intent.getIntentOld;
 

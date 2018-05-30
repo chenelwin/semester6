@@ -3,6 +3,10 @@ package com.example.asus.cinemaxx;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,9 +15,13 @@ import com.example.asus.cinemaxx.Model.Movie;
 import com.example.asus.cinemaxx.Model.Plaza;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
 import com.example.asus.cinemaxx.Model.ReqPlazaId;
+import com.example.asus.cinemaxx.Model.Schedule;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +39,12 @@ public class ScheduleActivity extends AppCompatActivity {
     TextView movielength;
     ImageView movieimg;
     Integer movieid;
+    ArrayList<Schedule> schedules;
+    //List<Schedule> schedules;
     TextView datetext;
     Context context;
+    RecyclerView rvSchedule;
+    ScheduleAdapter scheduleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +60,17 @@ public class ScheduleActivity extends AppCompatActivity {
         movieproducer = (TextView)findViewById(R.id.movieproducer);
         movielength = (TextView)findViewById(R.id.movielength);
         movieimg = (ImageView)findViewById(R.id.movieimg);
+        rvSchedule = (RecyclerView)findViewById(R.id.RvSchedule);
+        schedules = getIntent().getParcelableArrayListExtra("schedulelist");
         datetext.setText(getIntent().getStringExtra("displaydate"));
         doGetPlazaId();
         doGetMovieId();
+/*
+        scheduleAdapter = new ScheduleAdapter(schedules);
+        Integer col = 2;
+        rvSchedule.setLayoutManager(new GridLayoutManager(context, col));
+        rvSchedule.setItemAnimator(new DefaultItemAnimator());
+        rvSchedule.setAdapter(scheduleAdapter);*/
     }
 
     private void doGetMovieId(){
