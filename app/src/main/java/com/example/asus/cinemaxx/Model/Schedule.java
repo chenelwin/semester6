@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Schedule implements Parcelable {
     private Integer id;
     private String date;
-    private String startHour;
+    private String start_hour;
     private Integer price;
     private String type;
     private Movie movie;
@@ -22,7 +22,7 @@ public class Schedule implements Parcelable {
             id = in.readInt();
         }
         date = in.readString();
-        startHour = in.readString();
+        start_hour = in.readString();
         if (in.readByte() == 0) {
             price = null;
         } else {
@@ -40,7 +40,7 @@ public class Schedule implements Parcelable {
             dest.writeInt(id);
         }
         dest.writeString(date);
-        dest.writeString(startHour);
+        dest.writeString(start_hour);
         if (price == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -84,11 +84,11 @@ public class Schedule implements Parcelable {
     }
 
     public String getStartHour() {
-        return startHour;
+        return start_hour;
     }
 
     public void setStartHour(String startHour) {
-        this.startHour = startHour;
+        this.start_hour = startHour;
     }
 
     public Integer getPrice() {

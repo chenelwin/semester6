@@ -4,7 +4,7 @@ public class User {
     private Integer id;
     private String name;
     private String email;
-    public Integer point;
+    private Integer point;
 
     public Integer getId() {
         return id;

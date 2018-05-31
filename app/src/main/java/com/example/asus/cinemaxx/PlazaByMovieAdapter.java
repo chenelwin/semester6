@@ -17,7 +17,7 @@ import java.util.List;
 public class PlazaByMovieAdapter extends RecyclerView.Adapter<PlazaByMovieAdapter.ViewHolder> {
 
     public interface PassingData{
-        void passData(Integer id);
+        void passData(Integer id, int position);
     }
 
     public static PassingData passingData;
@@ -36,7 +36,7 @@ public class PlazaByMovieAdapter extends RecyclerView.Adapter<PlazaByMovieAdapte
     }
 
     @Override
-    public void onBindViewHolder(PlazaByMovieAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(PlazaByMovieAdapter.ViewHolder holder, final int position) {
         final Plaza plaza = plazas.get(holder.getAdapterPosition());
         holder.plazaNama.setText(plaza.getName());
         holder.plazaAlamat.setText(plaza.getStreet());
@@ -50,7 +50,7 @@ public class PlazaByMovieAdapter extends RecyclerView.Adapter<PlazaByMovieAdapte
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                passingData.passData(plaza.getId());
+                passingData.passData(plaza.getId(), position);
             }
         });
     }

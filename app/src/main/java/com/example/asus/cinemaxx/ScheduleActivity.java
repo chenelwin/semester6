@@ -65,12 +65,12 @@ public class ScheduleActivity extends AppCompatActivity {
         datetext.setText(getIntent().getStringExtra("displaydate"));
         doGetPlazaId();
         doGetMovieId();
-/*
+
         scheduleAdapter = new ScheduleAdapter(schedules);
         Integer col = 2;
         rvSchedule.setLayoutManager(new GridLayoutManager(context, col));
         rvSchedule.setItemAnimator(new DefaultItemAnimator());
-        rvSchedule.setAdapter(scheduleAdapter);*/
+        rvSchedule.setAdapter(scheduleAdapter);
     }
 
     private void doGetMovieId(){

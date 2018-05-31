@@ -30,8 +30,10 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -50,6 +52,8 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     TextView plazaalamat;
     ImageView plazaimg;
     ArrayList<Schedule> schedules;
+    List<Movie> movies;
+    Plaza plaza;
     Context context;
     ImageView btnCalendar;
     RecyclerView rvMovieByPlaza;
@@ -81,11 +85,9 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     }
 
     @Override
-    public void passData(Integer id){
+    public void passData(Integer id, int position){
         Intent intent = new Intent(MovieByPlaza.this, ScheduleActivity.class);
-        Bundle bundle = new Bundle();
-        //bundle.putSerializable("schedulelist", schedules);
-        //intent.putExtras(bundle);
+        schedules = movies.get(position).getSchedules();
         intent.putParcelableArrayListExtra("schedulelist", schedules );
         intent.putExtra("movieid", id);
         intent.putExtra("plazaid", plazaid);
@@ -117,6 +119,7 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
         doGetMovieByPlaza(formatmonthint, formatday, formatyear);
     }
 
+
     private void doGetPlazaId(){
         plazaid = getIntent().getIntExtra("plazaid", 0);
         Call<ReqPlazaId> call = userService.getPlazaById(plazaid);
@@ -129,7 +132,6 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
                 plazanama.setText(plaza.getName());
                 plazanamaheader.setText(plaza.getName());
                 plazaalamat.setText(plaza.getStreet());
-                schedules = plaza.getSchedules();
                 Picasso.with(context)
                         .load("http://cinema-xxii-server.herokuapp.com/profile?id="+plaza.getName())
                         .resize(150, 150)
@@ -152,7 +154,7 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onResponse(Call<ReqMovie> call, Response<ReqMovie> response) {
                 ReqMovie reqMovie = response.body();
-                List<Movie> movies = reqMovie.getMovies();
+                movies = reqMovie.getMovies();
                 movieByPlazaAdapter = new MovieByPlazaAdapter(movies);
                 Integer col = 3;
                 rvMovieByPlaza.setLayoutManager(new GridLayoutManager(context, col));

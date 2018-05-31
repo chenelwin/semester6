@@ -18,11 +18,13 @@ import com.example.asus.cinemaxx.Model.Movie;
 import com.example.asus.cinemaxx.Model.Plaza;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
 import com.example.asus.cinemaxx.Model.ReqPlaza;
+import com.example.asus.cinemaxx.Model.Schedule;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +46,8 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
     TextView movieproducer;
     TextView movielength;
     ImageView movieimg;
+    List<Plaza> plazas;
+    ArrayList<Schedule> schedules;
     Integer movieid;
     RecyclerView rvPlazaByMovie;
     PlazaByMovieAdapter plazaByMovieAdapter;
@@ -78,8 +82,10 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
     }
 
     @Override
-    public void passData(Integer id){
+    public void passData(Integer id, int position){
         Intent intent = new Intent(PlazaByMovie.this, ScheduleActivity.class);
+        schedules = plazas.get(position).getSchedules();
+        intent.putParcelableArrayListExtra("schedulelist", schedules);
         intent.putExtra("movieid", movieid);
         intent.putExtra("plazaid", id);
         intent.putExtra("displaydate", displaydate);
@@ -147,7 +153,7 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onResponse(Call<ReqPlaza> call, Response<ReqPlaza> response) {
                 ReqPlaza reqPlaza = response.body();
-                List<Plaza> plazas = reqPlaza.getPlazas();
+                plazas = reqPlaza.getPlazas();
                 plazaByMovieAdapter = new PlazaByMovieAdapter(plazas);
 
                 rvPlazaByMovie.setLayoutManager(new LinearLayoutManager(context));
