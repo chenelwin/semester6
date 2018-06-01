@@ -28,6 +28,7 @@
         android:layout_height="80dp"
         android:layout_margin="50dp"
         android:textAlignment="center"
+        android:id="@+id/voucher_code"
         android:background="@drawable/border"/>
 
     <TextView
@@ -39,18 +40,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:text="The code will be sent via email after payment"/>
+        android:text="Your balance will be added after redeem"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:text="Please check your email"/>
+        android:text="Please check your balance"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="40dp"
         android:background="#ff5f1001"
+        android:id="@+id/btnRedeem"
         android:text="Redeem"
         android:textColor="#fff"
         android:textSize="20sp"/>

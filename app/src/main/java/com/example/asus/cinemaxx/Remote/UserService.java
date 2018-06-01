@@ -6,7 +6,9 @@ import com.example.asus.cinemaxx.Model.ReqMovie;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
 import com.example.asus.cinemaxx.Model.ReqPlaza;
 import com.example.asus.cinemaxx.Model.ReqPlazaId;
+import com.example.asus.cinemaxx.Model.ReqRedeem;
 import com.example.asus.cinemaxx.Model.ResObj;
+import com.example.asus.cinemaxx.Model.ResRedeem;
 
 import java.util.List;
 
@@ -27,6 +29,9 @@ public interface UserService {
 
     @POST("/register")
     Call<ResObj> registerRequest(@Body ReqLogin reqLogin);
+
+    @POST("/voucher/redeem")
+    Call<ResRedeem> redeemRequest(@Body ReqRedeem reqRedeem);
 
     @GET("/plaza")
     Call<ReqPlaza> getPlazaRequest();

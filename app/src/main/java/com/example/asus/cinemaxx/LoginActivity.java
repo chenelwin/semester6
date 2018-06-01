@@ -17,6 +17,7 @@ import com.example.asus.cinemaxx.Model.ResObj;
 import com.example.asus.cinemaxx.Model.User;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
+import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -32,11 +33,23 @@ public class LoginActivity extends AppCompatActivity {
     TextView textRegister;
     ProgressDialog progressDialog;
     Context context;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        if(sharedPrefManager.getSPSudahLogin()){
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            String passingnama = sharedPrefManager.getSPNama();
+            String passingpoint = sharedPrefManager.getSPBalance();
+            intent.putExtra("profilenama", passingnama);
+            intent.putExtra("balance", passingpoint);
+            startActivity(intent);
+            finish();
+        }
 
         context = this;
         loginEmail = (EditText)findViewById(R.id.loginEmail);
@@ -94,8 +107,15 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, ""+resObj.getUser().getId(), Toast.LENGTH_LONG).show();
                     if (resObj.isStatus()) {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        intent.putExtra("profilenama", resObj.getUser().getName());
-                        intent.putExtra("balance", resObj.getUser().getPoint().toString());
+                        Integer passingid = resObj.getUser().getId();
+                        String passingnama = resObj.getUser().getName();
+                        Integer passingpoint = resObj.getUser().getPoint();
+                        intent.putExtra("profileid", passingid);
+                        intent.putExtra("profilenama", passingnama);
+                        intent.putExtra("balance", passingpoint.toString());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, passingnama);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_BALANCE, passingpoint.toString());
+                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                         startActivity(intent);
                         finish();
                     } else {

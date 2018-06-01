@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.asus.cinemaxx.Model.User;
+import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
 
 import static android.content.Intent.getIntent;
 import static android.content.Intent.getIntentOld;
@@ -22,11 +23,14 @@ public class ProfileFragment extends Fragment {
     TextView balance;
     LinearLayout btnLogout;
     LinearLayout btnRedeem;
+    SharedPrefManager sharedPrefManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        sharedPrefManager = new SharedPrefManager(view.getContext());
 
         String tempprofilenama = getActivity().getIntent().getStringExtra("profilenama");
         profilenama = (TextView)view.findViewById(R.id.profilenama);
@@ -41,6 +45,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -51,6 +56,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), RedeemActivity.class);
+                Integer profileid = getActivity().getIntent().getIntExtra("profileid", 0);
+                intent.putExtra("profileid", profileid);
                 startActivity(intent);
             }
         });
