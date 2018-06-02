@@ -9,7 +9,7 @@ public class SharedPrefManager {
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
     public static final String SP_BALANCE = "spBalance";
-
+    public static final String SP_ID = "spId";
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
     SharedPreferences sp;
@@ -33,6 +33,10 @@ public class SharedPrefManager {
     public void saveSPBoolean(String keySP, boolean value){
         spEditor.putBoolean(keySP, value);
         spEditor.commit();
+    }
+
+    public String getSPId(){
+        return sp.getString(SP_ID, "");
     }
 
     public String getSPNama(){

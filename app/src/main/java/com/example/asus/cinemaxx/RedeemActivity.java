@@ -14,6 +14,7 @@ import com.example.asus.cinemaxx.Model.ReqRedeem;
 import com.example.asus.cinemaxx.Model.ResRedeem;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
+import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +23,7 @@ import retrofit2.Response;
 public class RedeemActivity extends AppCompatActivity {
 
     UserService userService = ApiUtils.getUserService();
-
+    SharedPrefManager sharedPrefManager;
     Integer profileid;
     EditText vouchercode;
     Button btnRedeem;
@@ -35,6 +36,7 @@ public class RedeemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redeem);
         context = this;
+        sharedPrefManager = new SharedPrefManager(context);
 
         vouchercode = (EditText)findViewById(R.id.voucher_code);
 
@@ -73,9 +75,10 @@ public class RedeemActivity extends AppCompatActivity {
                     ResRedeem resRedeem = response.body();
                     if(resRedeem.isStatus()){
                         Toast.makeText(RedeemActivity.this, resRedeem.getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RedeemActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
+                        vouchercode.setText("");
+                        //Intent intent = new Intent(RedeemActivity.this, RedeemActivity.class);
+                        //startActivity(intent);
+                        //finish();
                     }
                     else {
                         Toast.makeText(RedeemActivity.this, "incorrect", Toast.LENGTH_SHORT).show();
@@ -83,6 +86,7 @@ public class RedeemActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(RedeemActivity.this, "salah/sudah terpakai", Toast.LENGTH_SHORT).show();
+                    vouchercode.setText("");
                     progressDialog.dismiss();
                 }
             }

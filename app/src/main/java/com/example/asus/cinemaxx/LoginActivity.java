@@ -109,10 +109,10 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         Integer passingid = resObj.getUser().getId();
                         String passingnama = resObj.getUser().getName();
+                        String passingemail = resObj.getUser().getEmail();
                         Integer passingpoint = resObj.getUser().getPoint();
-                        intent.putExtra("profileid", passingid);
-                        intent.putExtra("profilenama", passingnama);
-                        intent.putExtra("balance", passingpoint.toString());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, passingemail);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, passingid.toString());
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, passingnama);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_BALANCE, passingpoint.toString());
                         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);

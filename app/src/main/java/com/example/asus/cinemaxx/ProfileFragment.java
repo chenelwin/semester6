@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,11 +33,11 @@ public class ProfileFragment extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(view.getContext());
 
-        String tempprofilenama = getActivity().getIntent().getStringExtra("profilenama");
+        String tempprofilenama = sharedPrefManager.getSPNama();
         profilenama = (TextView)view.findViewById(R.id.profilenama);
         profilenama.setText(tempprofilenama);
 
-        String tempbalance = getActivity().getIntent().getStringExtra("balance");
+        String tempbalance = sharedPrefManager.getSPBalance();
         balance = (TextView)view.findViewById(R.id.balance);
         balance.setText(tempbalance);
 
@@ -45,6 +46,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, "");
+                sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, "");
+                sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, "");
+                sharedPrefManager.saveSPString(SharedPrefManager.SP_BALANCE, "");
                 sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
                 startActivity(intent);
                 getActivity().finish();
