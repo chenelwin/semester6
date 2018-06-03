@@ -52,7 +52,12 @@
             android:label="CINEMAXX"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
-        <activity android:name=".ScheduleActivity"
+        <activity
+            android:name=".ScheduleActivity"
+            android:label="CINEMAXX"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".SeatActivity"
             android:label="CINEMAXX"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>

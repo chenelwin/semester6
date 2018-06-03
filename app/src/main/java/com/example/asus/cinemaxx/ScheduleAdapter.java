@@ -1,6 +1,7 @@
 package com.example.asus.cinemaxx;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,6 +38,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         holder.tickettime.setText(schedule.getStartHour());
         holder.tickettype.setText("("+schedule.getType()+")");
         holder.ticketprice.setText("Rp. "+schedule.getPrice().toString());
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SeatActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
