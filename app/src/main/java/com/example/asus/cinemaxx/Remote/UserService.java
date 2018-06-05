@@ -7,8 +7,10 @@ import com.example.asus.cinemaxx.Model.ReqMovieId;
 import com.example.asus.cinemaxx.Model.ReqPlaza;
 import com.example.asus.cinemaxx.Model.ReqPlazaId;
 import com.example.asus.cinemaxx.Model.ReqRedeem;
+import com.example.asus.cinemaxx.Model.ReqUserId;
 import com.example.asus.cinemaxx.Model.ResObj;
 import com.example.asus.cinemaxx.Model.ResRedeem;
+import com.example.asus.cinemaxx.Model.User;
 
 import java.util.List;
 
@@ -42,15 +44,18 @@ public interface UserService {
     @GET("/movie/{id}")
     Call<ReqMovieId> getMovieById(@Path("id") Integer id);
 
-    @GET("plaza/{id}")
+    @GET("/plaza/{id}")
     Call<ReqPlazaId> getPlazaById(@Path("id") Integer id);
 
-    @GET("movie/{id}/schedule")
+    @GET("/movie/{id}/schedule")
     Call<ReqPlaza> getPlazaByMovie(@Path("id") Integer id,
                                    @Query("date") String date);
 
-    @GET("plaza/{id}/schedule")
+    @GET("/plaza/{id}/schedule")
     Call<ReqMovie> getMovieByPlaza(@Path("id") Integer id,
                                    @Query("date") String date);
+
+    @GET("/user/{id}")
+    Call<ReqUserId> getUserById(@Path("id") Integer id);
 
 }

@@ -107,14 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, ""+resObj.getUser().getId(), Toast.LENGTH_LONG).show();
                     if (resObj.isStatus()) {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        Integer passingid = resObj.getUser().getId();
+                        String passingid = resObj.getUser().getId().toString();
                         String passingnama = resObj.getUser().getName();
                         String passingemail = resObj.getUser().getEmail();
-                        Integer passingpoint = resObj.getUser().getPoint();
+                        String passingpoint = resObj.getUser().getPoint().toString();
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_EMAIL, passingemail);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, passingid.toString());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID, passingid);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, passingnama);
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_BALANCE, passingpoint.toString());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_BALANCE, passingpoint);
                         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                         startActivity(intent);
                         finish();

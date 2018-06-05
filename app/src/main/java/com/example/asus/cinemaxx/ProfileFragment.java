@@ -10,21 +10,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.asus.cinemaxx.Model.ReqUserId;
 import com.example.asus.cinemaxx.Model.User;
+import com.example.asus.cinemaxx.Remote.ApiUtils;
+import com.example.asus.cinemaxx.Remote.UserService;
 import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Intent.getIntent;
 import static android.content.Intent.getIntentOld;
 
 public class ProfileFragment extends Fragment {
 
+    UserService userService = ApiUtils.getUserService();
     View view;
     TextView profilenama;
     TextView balance;
     LinearLayout btnLogout;
     LinearLayout btnRedeem;
     SharedPrefManager sharedPrefManager;
+    String tempprofilenama;
+    String tempbalance;
 
     @Nullable
     @Override
@@ -33,11 +44,10 @@ public class ProfileFragment extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(view.getContext());
 
-        String tempprofilenama = sharedPrefManager.getSPNama();
+        tempprofilenama = sharedPrefManager.getSPNama();
         profilenama = (TextView)view.findViewById(R.id.profilenama);
         profilenama.setText(tempprofilenama);
-
-        String tempbalance = sharedPrefManager.getSPBalance();
+        tempbalance = sharedPrefManager.getSPBalance();
         balance = (TextView)view.findViewById(R.id.balance);
         balance.setText(tempbalance);
 
@@ -61,13 +71,39 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), RedeemActivity.class);
-                Integer profileid = getActivity().getIntent().getIntExtra("profileid", 0);
-                intent.putExtra("profileid", profileid);
                 startActivity(intent);
             }
         });
 
         return view;
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        doGetUserById();
+    }
+
+    private void doGetUserById(){
+        Integer id = Integer.parseInt(sharedPrefManager.getSPId());
+        Call<ReqUserId> call = userService.getUserById(id);
+        call.enqueue(new Callback<ReqUserId>() {
+            @Override
+            public void onResponse(Call<ReqUserId> call, Response<ReqUserId> response) {
+                ReqUserId reqUserId = response.body();
+                User user = reqUserId.getUser();
+                String newbalance = user.getPoint().toString();
+                sharedPrefManager.saveSPString(SharedPrefManager.SP_BALANCE, newbalance);
+                balance = (TextView)view.findViewById(R.id.balance);
+                balance.setText(newbalance);
+                //Log.e("resumenewbalance", sharedPrefManager.getSPBalance().toString());
+            }
+
+            @Override
+            public void onFailure(Call<ReqUserId> call, Throwable t) {
+                Toast.makeText(view.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

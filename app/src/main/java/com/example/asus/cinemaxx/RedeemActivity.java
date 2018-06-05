@@ -40,7 +40,8 @@ public class RedeemActivity extends AppCompatActivity {
 
         vouchercode = (EditText)findViewById(R.id.voucher_code);
 
-        profileid = getIntent().getIntExtra("profileid", 0);
+        //profileid = getIntent().getIntExtra("profileid", 0);
+        profileid = Integer.parseInt(sharedPrefManager.getSPId());
 
         btnRedeem = (Button)findViewById(R.id.btnRedeem);
         btnRedeem.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,7 @@ public class RedeemActivity extends AppCompatActivity {
                     if(resRedeem.isStatus()){
                         Toast.makeText(RedeemActivity.this, resRedeem.getMessage(), Toast.LENGTH_SHORT).show();
                         vouchercode.setText("");
+                        progressDialog.dismiss();
                         //Intent intent = new Intent(RedeemActivity.this, RedeemActivity.class);
                         //startActivity(intent);
                         //finish();

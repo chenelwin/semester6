@@ -35,7 +35,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     @Override
     public void onBindViewHolder(ScheduleAdapter.ViewHolder holder, int position) {
         final Schedule schedule = schedules.get(holder.getAdapterPosition());
-        holder.tickettime.setText(schedule.getStartHour());
+        holder.tickettime.setText(schedule.getStartHour()+" ");
         holder.tickettype.setText("("+schedule.getType()+")");
         holder.ticketprice.setText("Rp. "+schedule.getPrice().toString());
         holder.cv.setOnClickListener(new View.OnClickListener() {
