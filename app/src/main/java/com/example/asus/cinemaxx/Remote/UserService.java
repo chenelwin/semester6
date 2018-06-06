@@ -58,4 +58,11 @@ public interface UserService {
     @GET("/user/{id}")
     Call<ReqUserId> getUserById(@Path("id") Integer id);
 
+    @GET("/user/{id}/history")
+    Call<ReqUserId> getHistoryById(@Path("id") Integer id);
+
+    @GET("/schedule/{id}/tickets")
+    Call<ReqUserId> getTicketData(@Path("id") Integer id);
+
+
 }

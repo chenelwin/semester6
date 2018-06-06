@@ -40,7 +40,8 @@ public class SeatActivity extends AppCompatActivity {
         ArrayList<Seat> items = new ArrayList<>();
         for(int i=0; i<100; i++){
             Seat seat = new Seat();
-            seat.setSeat(R.drawable.seat0);
+            seat.setStatus(0);
+            seat.setSeatimg(R.drawable.seat0);
             items.add(seat);
         }
         return items;

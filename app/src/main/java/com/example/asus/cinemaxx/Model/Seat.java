@@ -1,15 +1,15 @@
 package com.example.asus.cinemaxx.Model;
 
 public class Seat {
-    private Integer seat;
+    private Integer seatimg;
     private Integer status;
 
-    public Integer getSeat() {
-        return seat;
+    public Integer getSeatimg() {
+        return seatimg;
     }
 
-    public void setSeat(Integer seat) {
-        this.seat = seat;
+    public void setSeatimg(Integer seatimg) {
+        this.seatimg = seatimg;
     }
 
     public Integer getStatus() {
