@@ -4,9 +4,11 @@ import com.example.asus.cinemaxx.Model.Plaza;
 import com.example.asus.cinemaxx.Model.ReqLogin;
 import com.example.asus.cinemaxx.Model.ReqMovie;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
+import com.example.asus.cinemaxx.Model.ReqOrder;
 import com.example.asus.cinemaxx.Model.ReqPlaza;
 import com.example.asus.cinemaxx.Model.ReqPlazaId;
 import com.example.asus.cinemaxx.Model.ReqRedeem;
+import com.example.asus.cinemaxx.Model.ReqTicket;
 import com.example.asus.cinemaxx.Model.ReqUserId;
 import com.example.asus.cinemaxx.Model.ResObj;
 import com.example.asus.cinemaxx.Model.ResRedeem;
@@ -59,10 +61,10 @@ public interface UserService {
     Call<ReqUserId> getUserById(@Path("id") Integer id);
 
     @GET("/user/{id}/history")
-    Call<ReqUserId> getHistoryById(@Path("id") Integer id);
+    Call<ReqOrder> getHistoryById(@Path("id") Integer id);
 
     @GET("/schedule/{id}/tickets")
-    Call<ReqUserId> getTicketData(@Path("id") Integer id);
+    Call<ReqTicket> getTicketData(@Path("id") Integer id);
 
 
 }

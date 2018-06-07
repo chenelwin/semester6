@@ -33,6 +33,7 @@ public class ProfileFragment extends Fragment {
     TextView balance;
     LinearLayout btnLogout;
     LinearLayout btnRedeem;
+    LinearLayout btnHistory;
     SharedPrefManager sharedPrefManager;
     String tempprofilenama;
     String tempbalance;
@@ -63,6 +64,15 @@ public class ProfileFragment extends Fragment {
                 sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+
+        btnHistory = (LinearLayout)view.findViewById(R.id.btnHistory);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), HistoryActivity.class);
+                startActivity(intent);
             }
         });
 

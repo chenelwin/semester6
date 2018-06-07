@@ -74,7 +74,8 @@
         android:background="@drawable/border"
         android:gravity="center_vertical"
         android:layout_margin="5dp"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:id="@+id/btnHistory">
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"

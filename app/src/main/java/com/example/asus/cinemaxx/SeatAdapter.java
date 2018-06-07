@@ -51,18 +51,7 @@ public class SeatAdapter extends RecyclerView.Adapter<SeatAdapter.ViewHolder> {
                 String angka = ""+((position%10)+1);
                 String hurufangka = ""+huruf+angka;
                 Log.e("posisi", ""+hurufangka);
-                /*
-                char[] hurufpos1 = hurufangka.toCharArray();
-                String mhuruf = ""+(int)(hurufpos1[0]-65);
-                String mangka="";
-                for(int i=1; i<hurufpos1.length; i++){
-                    mangka+=hurufpos1[i];
-                }
-                Integer mangkas = Integer.parseInt(mangka)-1;
-                Log.e("testing", ""+mhuruf);
-                Log.e("testing2",""+mangka);
-                Log.e("testingtrakhir", ""+mhuruf+mangkas);
-                //Log.e("posisihurufkeposition", ""+huruf+angka);*/
+
             }
         });
     }
