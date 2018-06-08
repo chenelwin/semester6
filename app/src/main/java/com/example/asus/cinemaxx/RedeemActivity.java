@@ -40,7 +40,6 @@ public class RedeemActivity extends AppCompatActivity {
 
         vouchercode = (EditText)findViewById(R.id.voucher_code);
 
-        //profileid = getIntent().getIntExtra("profileid", 0);
         profileid = Integer.parseInt(sharedPrefManager.getSPId());
 
         btnRedeem = (Button)findViewById(R.id.btnRedeem);

@@ -47,11 +47,6 @@ public class SeatAdapter extends RecyclerView.Adapter<SeatAdapter.ViewHolder> {
                     holder.imgSeat.setImageResource(R.drawable.seat0);
                     seat.setStatus(0);
                 }
-                String huruf = ""+(char)((position/10)+65);
-                String angka = ""+((position%10)+1);
-                String hurufangka = ""+huruf+angka;
-                Log.e("posisi", ""+hurufangka);
-
             }
         });
     }

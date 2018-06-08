@@ -26,20 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
     EditText regisRePassword;
     TextView textLogin;
     Button btnRegister;
-    UserService userService;
+    UserService userService = ApiUtils.getUserService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        regisEmail = (EditText) findViewById(R.id.regisEmail);
-        regisName = (EditText) findViewById(R.id.regisName);
-        regisPassword = (EditText) findViewById(R.id.regisPassword);
-        regisRePassword = (EditText) findViewById(R.id.regisRePassword);
-        textLogin = (TextView)findViewById(R.id.textLogin);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
-        userService = ApiUtils.getUserService();
+        initView();
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +57,15 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initView(){
+        regisEmail = (EditText) findViewById(R.id.regisEmail);
+        regisName = (EditText) findViewById(R.id.regisName);
+        regisPassword = (EditText) findViewById(R.id.regisPassword);
+        regisRePassword = (EditText) findViewById(R.id.regisRePassword);
+        textLogin = (TextView)findViewById(R.id.textLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
     }
 
     private boolean validateRegister(String email, String name, String password, String repassword){
@@ -101,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<ResObj> call, Response<ResObj> response) {
                 if(response.isSuccessful()) {
                     ResObj resObj = response.body();
-                    Toast.makeText(RegisterActivity.this, "Register ID "+resObj.getUser().getId(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Berhasil Register", Toast.LENGTH_LONG).show();
                     if (resObj.isStatus()) {
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
@@ -111,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(RegisterActivity.this, ""+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
                 }
             }
 

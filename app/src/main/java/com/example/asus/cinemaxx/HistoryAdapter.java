@@ -31,7 +31,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public void onBindViewHolder(HistoryAdapter.ViewHolder holder, int position) {
         final Order order = orders.get(holder.getAdapterPosition());
-        holder.orderdate.setText(order.getOrder_date());
+        holder.orderdate.setText(order.getOrder_date().substring(0,10));
         holder.ordermovie.setText(order.getMovie_name());
         String temp = "";
         for(int i=0; i<order.getSeats().length; i++){

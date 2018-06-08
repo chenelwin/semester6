@@ -44,7 +44,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SeatActivity.class);
                 Integer passingid = schedule.getId();
+                Integer passingprice = schedule.getPrice();
                 intent.putExtra("scheduleid", passingid);
+                intent.putExtra("scheduleprice", passingprice);
                 view.getContext().startActivity(intent);
             }
         });

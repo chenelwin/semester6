@@ -1,6 +1,7 @@
 package com.example.asus.cinemaxx.Remote;
 
 import com.example.asus.cinemaxx.Model.Plaza;
+import com.example.asus.cinemaxx.Model.ReqBuySeat;
 import com.example.asus.cinemaxx.Model.ReqLogin;
 import com.example.asus.cinemaxx.Model.ReqMovie;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
@@ -10,6 +11,7 @@ import com.example.asus.cinemaxx.Model.ReqPlazaId;
 import com.example.asus.cinemaxx.Model.ReqRedeem;
 import com.example.asus.cinemaxx.Model.ReqTicket;
 import com.example.asus.cinemaxx.Model.ReqUserId;
+import com.example.asus.cinemaxx.Model.ResBuySeat;
 import com.example.asus.cinemaxx.Model.ResObj;
 import com.example.asus.cinemaxx.Model.ResRedeem;
 import com.example.asus.cinemaxx.Model.User;
@@ -36,6 +38,9 @@ public interface UserService {
 
     @POST("/voucher/redeem")
     Call<ResRedeem> redeemRequest(@Body ReqRedeem reqRedeem);
+
+    @POST("/ticket")
+    Call<ResBuySeat> buySeatRequest(@Body ReqBuySeat reqBuySeat);
 
     @GET("/plaza")
     Call<ReqPlaza> getPlazaRequest();

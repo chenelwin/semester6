@@ -8,15 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fffd7100"
-        android:gravity="center">
+        android:background="#fffd7100">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:textSize="25sp"
             android:textColor="#fff"
-            android:text="Plaza"
+            android:text="Select Plaza"
             android:layout_margin="10dp"/>
     </LinearLayout>
 

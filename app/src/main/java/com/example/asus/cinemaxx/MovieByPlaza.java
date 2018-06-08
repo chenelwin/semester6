@@ -63,18 +63,12 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_by_plaza);
-        context = this;
-        rvMovieByPlaza = (RecyclerView)findViewById(R.id.RvMovieByPlaza);
-        plazanamaheader = (TextView)findViewById(R.id.plazanamaheader);
-        plazanama = (TextView)findViewById(R.id.plazanama);
-        plazaalamat = (TextView)findViewById(R.id.plazaalamat);
-        plazaimg = (ImageView)findViewById(R.id.plazaimg);
+        initView();
 
         doGetPlazaId();
 
         MovieByPlazaAdapter.passingData = this;
 
-        btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
         btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +113,15 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
         doGetMovieByPlaza(formatmonthint, formatday, formatyear);
     }
 
+    private void initView(){
+        context = this;
+        rvMovieByPlaza = (RecyclerView)findViewById(R.id.RvMovieByPlaza);
+        plazanamaheader = (TextView)findViewById(R.id.plazanamaheader);
+        plazanama = (TextView)findViewById(R.id.plazanama);
+        plazaalamat = (TextView)findViewById(R.id.plazaalamat);
+        plazaimg = (ImageView)findViewById(R.id.plazaimg);
+        btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
+    }
 
     private void doGetPlazaId(){
         plazaid = getIntent().getIntExtra("plazaid", 0);

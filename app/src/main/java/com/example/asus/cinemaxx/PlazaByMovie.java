@@ -56,21 +56,12 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plaza_by_movie);
-        context = this;
-        rvPlazaByMovie = (RecyclerView)findViewById(R.id.RvPlazaByMovie);
-        moviename = (TextView)findViewById(R.id.moviename);
-        moviecast = (TextView)findViewById(R.id.moviecast);
-        moviewriter = (TextView)findViewById(R.id.moviewriter);
-        moviegenre = (TextView)findViewById(R.id.moviegenre);
-        movieproducer = (TextView)findViewById(R.id.movieproducer);
-        movielength = (TextView)findViewById(R.id.movielength);
-        movieimg = (ImageView)findViewById(R.id.movieimg);
+        initView();
 
         doGetMovieId();
 
         PlazaByMovieAdapter.passingData = this;
 
-        btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
         btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,6 +105,19 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
         displaydate = formatday+" "+formatmonth+" "+formatyear;
         textView.setText(displaydate);
         doGetPlazaByMovie(formatmonthint, formatday, formatyear);
+    }
+
+    private void initView(){
+        context = this;
+        rvPlazaByMovie = (RecyclerView)findViewById(R.id.RvPlazaByMovie);
+        moviename = (TextView)findViewById(R.id.moviename);
+        moviecast = (TextView)findViewById(R.id.moviecast);
+        moviewriter = (TextView)findViewById(R.id.moviewriter);
+        moviegenre = (TextView)findViewById(R.id.moviegenre);
+        movieproducer = (TextView)findViewById(R.id.movieproducer);
+        movielength = (TextView)findViewById(R.id.movielength);
+        movieimg = (ImageView)findViewById(R.id.movieimg);
+        btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
     }
 
     private void doGetMovieId(){

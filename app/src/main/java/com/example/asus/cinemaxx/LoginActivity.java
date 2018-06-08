@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText loginEmail;
     EditText loginPassword;
     Button btnLogin;
-    UserService userService;
+    UserService userService = ApiUtils.getUserService();
     TextView textRegister;
     ProgressDialog progressDialog;
     Context context;
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initView();
 
-        sharedPrefManager = new SharedPrefManager(this);
         if(sharedPrefManager.getSPSudahLogin()){
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             String passingnama = sharedPrefManager.getSPNama();
@@ -50,13 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
-        context = this;
-        loginEmail = (EditText)findViewById(R.id.loginEmail);
-        loginPassword = (EditText)findViewById(R.id.loginPassword);
-        btnLogin = (Button)findViewById(R.id.btnLogin);
-        textRegister = (TextView)findViewById(R.id.textRegister);
-        userService = ApiUtils.getUserService();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +75,15 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void initView(){
+        sharedPrefManager = new SharedPrefManager(this);
+        context = this;
+        loginEmail = (EditText)findViewById(R.id.loginEmail);
+        loginPassword = (EditText)findViewById(R.id.loginPassword);
+        btnLogin = (Button)findViewById(R.id.btnLogin);
+        textRegister = (TextView)findViewById(R.id.textRegister);
+    }
+
     private boolean validateLogin(String email, String password){
         if(email == null || email.trim().length() == 0){
             Toast.makeText(this, "Email is required", Toast.LENGTH_SHORT).show();
@@ -104,9 +106,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<ResObj> call, Response<ResObj> response) {
                 if(response.isSuccessful()) {
                     ResObj resObj = response.body();
-                    Toast.makeText(LoginActivity.this, ""+resObj.getUser().getId(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Berhasil Login", Toast.LENGTH_LONG).show();
                     if (resObj.isStatus()) {
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         String passingid = resObj.getUser().getId().toString();
                         String passingnama = resObj.getUser().getName();
                         String passingemail = resObj.getUser().getEmail();
@@ -123,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, ""+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             }

@@ -9,16 +9,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fffd7100"
-        android:gravity="center">
+        android:background="#fffd7100">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
-            android:textAlignment="center"
             android:textColor="#fff"
             android:layout_margin="10dp"
-            android:text="Movie"/>
+            android:text="Select Movie"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

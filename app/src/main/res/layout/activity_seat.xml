@@ -86,7 +86,8 @@
             android:layout_margin="30dp"
             android:text="CONTINUE"
             android:textColor="#fff"
-            android:background="#ff5f1001"/>
+            android:background="#ff5f1001"
+            android:id="@+id/btnBuySeat"/>
     </LinearLayout>
 
 </LinearLayout>

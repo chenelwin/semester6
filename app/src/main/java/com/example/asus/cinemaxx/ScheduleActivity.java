@@ -50,6 +50,21 @@ public class ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        initView();
+
+        schedules = getIntent().getParcelableArrayListExtra("schedulelist");
+        datetext.setText(getIntent().getStringExtra("displaydate"));
+        doGetPlazaId();
+        doGetMovieId();
+
+        scheduleAdapter = new ScheduleAdapter(schedules);
+        Integer col = 2;
+        rvSchedule.setLayoutManager(new GridLayoutManager(context, col));
+        rvSchedule.setItemAnimator(new DefaultItemAnimator());
+        rvSchedule.setAdapter(scheduleAdapter);
+    }
+
+    private void initView(){
         context = this;
         datetext = (TextView)findViewById(R.id.dateText);
         plazaname = (TextView)findViewById(R.id.plazanama);
@@ -61,16 +76,6 @@ public class ScheduleActivity extends AppCompatActivity {
         movielength = (TextView)findViewById(R.id.movielength);
         movieimg = (ImageView)findViewById(R.id.movieimg);
         rvSchedule = (RecyclerView)findViewById(R.id.RvSchedule);
-        schedules = getIntent().getParcelableArrayListExtra("schedulelist");
-        datetext.setText(getIntent().getStringExtra("displaydate"));
-        doGetPlazaId();
-        doGetMovieId();
-
-        scheduleAdapter = new ScheduleAdapter(schedules);
-        Integer col = 2;
-        rvSchedule.setLayoutManager(new GridLayoutManager(context, col));
-        rvSchedule.setItemAnimator(new DefaultItemAnimator());
-        rvSchedule.setAdapter(scheduleAdapter);
     }
 
     private void doGetMovieId(){

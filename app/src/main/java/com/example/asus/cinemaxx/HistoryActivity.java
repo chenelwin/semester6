@@ -33,11 +33,14 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        initView();
+        doGetHistory();
+    }
+
+    private void initView(){
         context = this;
         sharedPrefManager = new SharedPrefManager(context);
         rvHistory = (RecyclerView)findViewById(R.id.RvHistory);
-
-        doGetHistory();
     }
 
     private void doGetHistory(){

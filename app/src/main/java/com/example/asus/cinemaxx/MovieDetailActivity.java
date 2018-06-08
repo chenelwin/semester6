@@ -39,20 +39,10 @@ public class MovieDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-        context = this;
-
-        moviename = (TextView)findViewById(R.id.moviename);
-        moviecast = (TextView)findViewById(R.id.moviecast);
-        moviewriter = (TextView)findViewById(R.id.moviewriter);
-        moviegenre = (TextView)findViewById(R.id.moviegenre);
-        movieproducer = (TextView)findViewById(R.id.movieproducer);
-        movielength = (TextView)findViewById(R.id.movielength);
-        moviesynopsis = (TextView)findViewById(R.id.moviesynopsis);
-        movieimg = (ImageView)findViewById(R.id.movieimg);
+        initView();
 
         doGetMovieId();
 
-        btnBuyTicket = (Button)findViewById(R.id.btnBuyTicket);
         btnBuyTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +51,19 @@ public class MovieDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void initView(){
+        context = this;
+        moviename = (TextView)findViewById(R.id.moviename);
+        moviecast = (TextView)findViewById(R.id.moviecast);
+        moviewriter = (TextView)findViewById(R.id.moviewriter);
+        moviegenre = (TextView)findViewById(R.id.moviegenre);
+        movieproducer = (TextView)findViewById(R.id.movieproducer);
+        movielength = (TextView)findViewById(R.id.movielength);
+        moviesynopsis = (TextView)findViewById(R.id.moviesynopsis);
+        movieimg = (ImageView)findViewById(R.id.movieimg);
+        btnBuyTicket = (Button)findViewById(R.id.btnBuyTicket);
     }
 
     private void doGetMovieId(){
