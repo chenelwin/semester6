@@ -63,6 +63,7 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_by_plaza);
+
         initView();
 
         doGetPlazaId();
@@ -107,7 +108,6 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
         String formatmonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
         String formatyear = "" + year;
         TextView textView = (TextView)findViewById(R.id.dateText);
-        //textView.setText(currentDateString);
         displaydate = formatday+" "+formatmonth+" "+formatyear;
         textView.setText(displaydate);
         doGetMovieByPlaza(formatmonthint, formatday, formatyear);

@@ -1,7 +1,9 @@
 package com.example.asus.cinemaxx;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,13 +45,15 @@ public class SeatActivity extends AppCompatActivity {
     int[] convertedTexttoNumSeat;
     ProgressDialog progressDialog;
     Context context;
-
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat);
         context = this;
+        builder = new AlertDialog.Builder(context);
+
         sharedPrefManager = new SharedPrefManager(context);
         doGetTicketData();
         RvSeat = (RecyclerView)findViewById(R.id.RvSeat);
@@ -58,36 +62,55 @@ public class SeatActivity extends AppCompatActivity {
         btnBuySeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selected = new ArrayList<Integer>();
-                for(int i=0; i<100; i++){
-                    if(seats.get(i).getStatus()==1){
-                        selected.add(i);
-                    }
-                }
-                progressDialog = ProgressDialog.show(SeatActivity.this, null, "Please Wait..", true);
-                if(selected.size()==0){
-                    Toast.makeText(context, "PILIH KURSI", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-                else {
-                    Integer price = getIntent().getIntExtra("scheduleprice", 0);
-                    Integer balance = Integer.parseInt(sharedPrefManager.getSPBalance());
-                    if(price*selected.size() > balance){
-                        Toast.makeText(SeatActivity.this, "SALDO TIDAK CUKUP", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                    else{
-                        sendSeat = new String[selected.size()];
-                        for (int i = 0; i < sendSeat.length; i++) {
-                            doConvertPosToSeat(i);
-                        }
-                        doBuySeat();
-                    }
-                }
+                builder.setTitle("Buy Seat")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("OK", dialogClickListener)
+                        .setNegativeButton("Cancel", dialogClickListener)
+                        .show();
             }
         });
 
     }
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    dialogInterface.dismiss();
+                    selected = new ArrayList<Integer>();
+                    for(int i=0; i<100; i++){
+                        if(seats.get(i).getStatus()==1){
+                            selected.add(i);
+                        }
+                    }
+                    progressDialog = ProgressDialog.show(SeatActivity.this, null, "Please Wait..", true);
+                    if(selected.size()==0){
+                        Toast.makeText(context, "PILIH KURSI", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                    else {
+                        Integer price = getIntent().getIntExtra("scheduleprice", 0);
+                        Integer balance = Integer.parseInt(sharedPrefManager.getSPBalance());
+                        if(price*selected.size() > balance){
+                            Toast.makeText(SeatActivity.this, "SALDO TIDAK CUKUP", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                        else{
+                            sendSeat = new String[selected.size()];
+                            for (int i = 0; i < sendSeat.length; i++) {
+                                doConvertPosToSeat(i);
+                            }
+                            doBuySeat();
+                        }
+                    }
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    dialogInterface.dismiss();
+                    break;
+            }
+        }
+    };
 
     private List<Seat> doCreateSeat(){
         ArrayList<Seat> items = new ArrayList<>();
