@@ -62,11 +62,25 @@ public class SeatActivity extends AppCompatActivity {
         btnBuySeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.setTitle("Buy Seat")
-                        .setMessage("Are you sure?")
-                        .setPositiveButton("OK", dialogClickListener)
-                        .setNegativeButton("Cancel", dialogClickListener)
-                        .show();
+                selected = new ArrayList<Integer>();
+                for(int i=0; i<100; i++){
+                    if(seats.get(i).getStatus()==1){
+                        selected.add(i);
+                    }
+                }
+                progressDialog = ProgressDialog.show(SeatActivity.this, null, "Please Wait..", true);
+                if(selected.size()==0){
+                    Log.e("KOSONG", "KOSONG");
+                    Toast.makeText(context, "PILIH KURSI", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+                else {
+                    builder.setTitle("Buy Seat")
+                            .setMessage("Are you sure?")
+                            .setPositiveButton("OK", dialogClickListener)
+                            .setNegativeButton("Cancel", dialogClickListener)
+                            .show();
+                }
             }
         });
 
@@ -78,35 +92,25 @@ public class SeatActivity extends AppCompatActivity {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
                     dialogInterface.dismiss();
-                    selected = new ArrayList<Integer>();
-                    for(int i=0; i<100; i++){
-                        if(seats.get(i).getStatus()==1){
-                            selected.add(i);
-                        }
-                    }
-                    progressDialog = ProgressDialog.show(SeatActivity.this, null, "Please Wait..", true);
-                    if(selected.size()==0){
-                        Toast.makeText(context, "PILIH KURSI", Toast.LENGTH_SHORT).show();
+
+                    Integer price = getIntent().getIntExtra("scheduleprice", 0);
+                    Integer balance = Integer.parseInt(sharedPrefManager.getSPBalance());
+                    if(price*selected.size() > balance){
+                        Toast.makeText(SeatActivity.this, "SALDO TIDAK CUKUP", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
-                    else {
-                        Integer price = getIntent().getIntExtra("scheduleprice", 0);
-                        Integer balance = Integer.parseInt(sharedPrefManager.getSPBalance());
-                        if(price*selected.size() > balance){
-                            Toast.makeText(SeatActivity.this, "SALDO TIDAK CUKUP", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
+                    else{
+                        sendSeat = new String[selected.size()];
+                        for (int i = 0; i < sendSeat.length; i++) {
+                            doConvertPosToSeat(i);
                         }
-                        else{
-                            sendSeat = new String[selected.size()];
-                            for (int i = 0; i < sendSeat.length; i++) {
-                                doConvertPosToSeat(i);
-                            }
-                            doBuySeat();
-                        }
+                        doBuySeat();
                     }
+
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     dialogInterface.dismiss();
+                    progressDialog.dismiss();
                     break;
             }
         }
