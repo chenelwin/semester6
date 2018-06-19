@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MovieByPlaza">
+    tools:context=".Activity.MovieByPlaza">
 
     <LinearLayout
         android:layout_width="match_parent"

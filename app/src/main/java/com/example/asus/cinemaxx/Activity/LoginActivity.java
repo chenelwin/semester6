@@ -1,11 +1,10 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,12 +13,11 @@ import android.widget.Toast;
 
 import com.example.asus.cinemaxx.Model.ReqLogin;
 import com.example.asus.cinemaxx.Model.ResObj;
-import com.example.asus.cinemaxx.Model.User;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

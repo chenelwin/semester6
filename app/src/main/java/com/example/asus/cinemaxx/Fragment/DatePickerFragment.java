@@ -1,10 +1,12 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+
+import com.example.asus.cinemaxx.R;
 
 import java.util.Calendar;
 

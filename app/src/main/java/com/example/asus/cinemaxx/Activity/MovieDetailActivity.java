@@ -1,4 +1,4 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.asus.cinemaxx.Model.Movie;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;

@@ -1,4 +1,4 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -20,8 +20,10 @@ import com.example.asus.cinemaxx.Model.ReqTicket;
 import com.example.asus.cinemaxx.Model.ResBuySeat;
 import com.example.asus.cinemaxx.Model.Seat;
 import com.example.asus.cinemaxx.Model.Ticket;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
+import com.example.asus.cinemaxx.Adapter.SeatAdapter;
 import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
 
 import java.util.ArrayList;

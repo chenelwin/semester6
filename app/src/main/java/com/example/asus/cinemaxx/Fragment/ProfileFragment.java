@@ -1,10 +1,9 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asus.cinemaxx.Activity.HistoryActivity;
+import com.example.asus.cinemaxx.Activity.LoginActivity;
+import com.example.asus.cinemaxx.Activity.RedeemActivity;
 import com.example.asus.cinemaxx.Model.ReqUserId;
 import com.example.asus.cinemaxx.Model.User;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
@@ -21,9 +24,6 @@ import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Intent.getIntent;
-import static android.content.Intent.getIntentOld;
 
 public class ProfileFragment extends Fragment {
 

@@ -1,8 +1,7 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.asus.cinemaxx.Model.ReqRedeem;
 import com.example.asus.cinemaxx.Model.ResRedeem;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;

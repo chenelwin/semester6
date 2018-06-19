@@ -1,4 +1,4 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.asus.cinemaxx.Model.ReqLogin;
 import com.example.asus.cinemaxx.Model.ResObj;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 

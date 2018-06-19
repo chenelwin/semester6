@@ -1,4 +1,4 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -14,16 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asus.cinemaxx.Fragment.DatePickerFragment;
 import com.example.asus.cinemaxx.Model.Movie;
 import com.example.asus.cinemaxx.Model.Plaza;
 import com.example.asus.cinemaxx.Model.ReqMovieId;
 import com.example.asus.cinemaxx.Model.ReqPlaza;
 import com.example.asus.cinemaxx.Model.Schedule;
+import com.example.asus.cinemaxx.Adapter.PlazaByMovieAdapter;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -33,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, PlazaByMovieAdapter.PassingData{
+public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, PlazaByMovieAdapter.PassingData {
 
     Context context;
     UserService userService = ApiUtils.getUserService();

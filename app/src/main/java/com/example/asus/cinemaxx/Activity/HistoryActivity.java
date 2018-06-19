@@ -1,4 +1,4 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Activity;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.asus.cinemaxx.Adapter.HistoryAdapter;
 import com.example.asus.cinemaxx.Model.Order;
 import com.example.asus.cinemaxx.Model.ReqOrder;
+import com.example.asus.cinemaxx.R;
 import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.example.asus.cinemaxx.SharedPreferences.SharedPrefManager;

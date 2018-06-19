@@ -1,4 +1,4 @@
-package com.example.asus.cinemaxx;
+package com.example.asus.cinemaxx.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.asus.cinemaxx.Model.Plaza;
+import com.example.asus.cinemaxx.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
