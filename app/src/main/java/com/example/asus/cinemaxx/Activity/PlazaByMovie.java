@@ -26,8 +26,11 @@ import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,6 +50,7 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
     TextView moviegenre;
     TextView movieproducer;
     TextView movielength;
+    TextView textdate;
     ImageView movieimg;
     List<Plaza> plazas;
     ArrayList<Schedule> schedules;
@@ -102,16 +106,16 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
         }
         String formatmonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
         String formatyear = "" + year;
-        TextView textView = (TextView)findViewById(R.id.dateText);
         //textView.setText(currentDateString);
         displaydate = formatday+" "+formatmonth+" "+formatyear;
-        textView.setText(displaydate);
+        textdate.setText(displaydate);
         doGetPlazaByMovie(formatmonthint, formatday, formatyear);
     }
 
     private void initView(){
         context = this;
         rvPlazaByMovie = (RecyclerView)findViewById(R.id.RvPlazaByMovie);
+        initTextDate();
         moviename = (TextView)findViewById(R.id.moviename);
         moviecast = (TextView)findViewById(R.id.moviecast);
         moviewriter = (TextView)findViewById(R.id.moviewriter);
@@ -120,6 +124,16 @@ public class PlazaByMovie extends AppCompatActivity implements DatePickerDialog.
         movielength = (TextView)findViewById(R.id.movielength);
         movieimg = (ImageView)findViewById(R.id.movieimg);
         btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
+    }
+
+    private void initTextDate(){
+        DateFormat dateday = new SimpleDateFormat("dd");
+        DateFormat datemonth = new SimpleDateFormat("MMM");
+        DateFormat dateyear = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        String dateinit = ""+dateday.format(date)+" "+datemonth.format(date)+" "+dateyear.format(date);
+        textdate = (TextView)findViewById(R.id.dateText);
+        textdate.setText(dateinit);
     }
 
     private void doGetMovieId(){

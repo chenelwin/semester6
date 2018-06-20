@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -26,8 +27,11 @@ import com.example.asus.cinemaxx.Remote.ApiUtils;
 import com.example.asus.cinemaxx.Remote.UserService;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,6 +50,7 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
     ImageView plazaimg;
     ArrayList<Schedule> schedules;
     List<Movie> movies;
+    TextView textdate;
     Plaza plaza;
     Context context;
     ImageView btnCalendar;
@@ -100,20 +105,30 @@ public class MovieByPlaza extends AppCompatActivity implements DatePickerDialog.
         }
         String formatmonth = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
         String formatyear = "" + year;
-        TextView textView = (TextView)findViewById(R.id.dateText);
         displaydate = formatday+" "+formatmonth+" "+formatyear;
-        textView.setText(displaydate);
+        textdate.setText(displaydate);
         doGetMovieByPlaza(formatmonthint, formatday, formatyear);
     }
 
     private void initView(){
         context = this;
+        initTextDate();
         rvMovieByPlaza = (RecyclerView)findViewById(R.id.RvMovieByPlaza);
         plazanamaheader = (TextView)findViewById(R.id.plazanamaheader);
         plazanama = (TextView)findViewById(R.id.plazanama);
         plazaalamat = (TextView)findViewById(R.id.plazaalamat);
         plazaimg = (ImageView)findViewById(R.id.plazaimg);
         btnCalendar = (ImageView)findViewById(R.id.btnCalendar);
+    }
+
+    private void initTextDate(){
+        DateFormat dateday = new SimpleDateFormat("dd");
+        DateFormat datemonth = new SimpleDateFormat("MMM");
+        DateFormat dateyear = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        String dateinit = ""+dateday.format(date)+" "+datemonth.format(date)+" "+dateyear.format(date);
+        textdate = (TextView)findViewById(R.id.dateText);
+        textdate.setText(dateinit);
     }
 
     private void doGetPlazaId(){
